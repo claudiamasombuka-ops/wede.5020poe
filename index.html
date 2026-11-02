@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreenAcres Organic Farm | Pretoria, South Africa</title>
+  <style>
+    :root {
+      --primary: #2d5a27;
+      --primary-dark: #1b3818;
+      --secondary: #e9b949;
+      --accent: #8c2520;
+      --bg-light: #f4f6f0;
+      --surface: #ffffff;
+      --text-dark: #2c3e50;
+      --text-muted: #6c757d;
+      --border-color: #e0e0e0;
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      --radius: 8px;
+      --transition: all 0.3s ease;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text-dark); background-color: var(--bg-light); line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .header { background: var(--surface); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .nav-menu { display: flex; list-style: none; gap: 1.5rem; align-items: center; }
+    .nav-link { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: var(--transition); }
+    .nav-link:hover, .nav-link.active { color: var(--primary); }
+    .cart-icon-btn { background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: var(--radius); cursor: pointer; font-weight: 600; }
+    .hamburger { display: none; cursor: pointer; background: none; border: none; font-size: 1.5rem; }
+    .hero { background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; color: white; text-align: center; padding: 6rem 1rem; }
+    .hero h1 { font-size: 3rem; margin-bottom: 1rem; }
+    .hero p { font-size: 1.25rem; max-width: 750px; margin: 0 auto 2rem; }
+    .btn { display: inline-block; padding: 0.8rem 1.8rem; border-radius: var(--radius); text-decoration: none; font-weight: 600; cursor: pointer; border: none; transition: var(--transition); }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .section { padding: 4rem 0; }
+    .section-title { text-align: center; font-size: 2.2rem; color: var(--primary-dark); margin-bottom: 2.5rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .card { background: var(--surface); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; transition: var(--transition); }
+    .card:hover { transform: translateY(-5px); }
+    .card-img { width: 100%; height: 200px; object-fit: cover; }
+    .card-body { padding: 1.5rem; }
+    .card-title { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--primary-dark); }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center; background: var(--primary); color: white; padding: 3rem 1rem; border-radius: var(--radius); }
+    .stat-num { font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 2000; justify-content: center; align-items: center; }
+    .modal.active { display: flex; }
+    .modal-content { background: var(--surface); padding: 2rem; border-radius: var(--radius); width: 90%; max-width: 500px; position: relative; }
+    .close-modal { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; cursor: pointer; border: none; background: none; }
+    .footer { background: var(--primary-dark); color: white; padding: 3rem 0 1.5rem; margin-top: 4rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+    .footer h4 { margin-bottom: 1rem; color: var(--secondary); }
+    .footer-links { list-style: none; }
+    .footer-links a { color: #ddd; text-decoration: none; }
+    .footer-bottom { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; font-size: 0.9rem; color: #aaa; }
+    @media (max-width: 768px) {
+      .nav-menu { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--surface); flex-direction: column; padding: 2rem; transition: var(--transition); }
+      .nav-menu.active { left: 0; }
+      .hamburger { display: block; }
+      .hero h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">🌱 GreenAcres</a>
+      <button class="hamburger">☰</button>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="about.html" class="nav-link">About Us</a></li>
+        <li><a href="produce.html" class="nav-link">Produce & Shop</a></li>
+        <li><a href="tours.html" class="nav-link">Tours & Workshops</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><button id="cart-btn" class="cart-icon-btn">🛒 Cart (<span id="cart-count">0</span>)</button></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Sustainably Farmed in the Heart of Tshwane</h1>
+      <p>100% Certified organic vegetables, fresh dairy, and artisanal honey harvested daily on our fertile estate outside Pretoria.</p>
+      <a href="produce.html" class="btn btn-primary">Explore Seasonal Harvest</a>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2 class="section-title">Our Regenerative Farming Pillars</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1595855759920-86582396756a?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Soil Health">
+        <div class="card-body">
+          <h3 class="card-title">Soil Enrichment & Biodiversity</h3>
+          <p>We nurture nutrient-rich soil using organic compost, natural crop rotation, and zero synthetic chemical inputs.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1615811361523-6bd03d7748e7?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Fresh Pick">
+        <div class="card-body">
+          <h3 class="card-title">Daily Morning Harvest</h3>
+          <p>Picked at peak maturity at dawn to deliver maximum flavor, vibrant color, and vital nutrients to local households.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Solar Powered">
+        <div class="card-body">
+          <h3 class="card-title">100% Solar & Drip Irrigation</h3>
+          <p>Our operations run entirely on renewable solar power and smart drip irrigation systems tailored for Highveld weather.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="stats-grid">
+      <div><div class="stat-num" data-target="150">0</div><p>Hectares Farmed</p></div>
+      <div><div class="stat-num" data-target="45">0</div><p>Crop Varieties</p></div>
+      <div><div class="stat-num" data-target="12000">0</div><p>Local Families Served</p></div>
+      <div><div class="stat-num" data-target="100">0</div><p>% Solar Powered</p></div>
+    </div>
+  </section>
+
+  <div id="cart-modal" class="modal">
+    <div class="modal-content">
+      <button id="close-cart" class="close-modal">&times;</button>
+      <h2>Your Shopping Basket</h2>
+      <ul id="cart-items-list" style="margin: 1.5rem 0; list-style: none;"></ul>
+      <p style="font-weight: bold; font-size: 1.2rem;">Total: R<span id="cart-total">0.00</span></p>
+      <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="alert('Proceeding to checkout...')">Checkout</button>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h4>GreenAcres Organic Farm</h4>
+        <p>Bringing fresh, eco-friendly produce from our Pretoria soil straight to your table.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="about.html">Our Heritage</a></li>
+          <li><a href="produce.html">Fresh Produce</a></li>
+          <li><a href="tours.html">Guided Tours</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Location</h4>
+        <p>Plot 42, Kameeldrift East, Pretoria, 0035</p>
+        <p>Email: hello@greenacresfarm.co.za</p>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 GreenAcres Organic Farm Pretoria. All Rights Reserved.</div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('.nav-menu');
+      if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+      }
+
+      let cart = JSON.parse(localStorage.getItem('farm_cart')) || [];
+      const updateCartBadge = () => {
+        const cartCountEl = document.getElementById('cart-count');
+        if (cartCountEl) {
+          cartCountEl.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+        }
+      };
+      updateCartBadge();
+
+      const cartBtn = document.getElementById('cart-btn');
+      const cartModal = document.getElementById('cart-modal');
+      const closeCartBtn = document.getElementById('close-cart');
+
+      if (cartBtn && cartModal) {
+        cartBtn.addEventListener('click', () => {
+          renderCartItems();
+          cartModal.classList.add('active');
+        });
+      }
+      if (closeCartBtn) {
+        closeCartBtn.addEventListener('click', () => cartModal.classList.remove('active'));
+      }
+
+      function renderCartItems() {
+        const cartItemsList = document.getElementById('cart-items-list');
+        const cartTotalEl = document.getElementById('cart-total');
+        if (!cartItemsList || !cartTotalEl) return;
+        cartItemsList.innerHTML = '';
+        let total = 0;
+        if (cart.length === 0) {
+          cartItemsList.innerHTML = '<li>Your basket is empty.</li>';
+        } else {
+          cart.forEach(item => {
+            const itemTotal = item.price * item.qty;
+            total += itemTotal;
+            const li = document.createElement('li');
+            li.style.marginBottom = '8px';
+            li.textContent = `${item.name} x${item.qty} - R${itemTotal.toFixed(2)}`;
+            cartItemsList.appendChild(li);
+          });
+        }
+        cartTotalEl.textContent = total.toFixed(2);
+      }
+
+      const counters = document.querySelectorAll('.stat-num');
+      counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        let count = 0;
+        const speed = target / 50;
+        const updateCount = () => {
+          count += speed;
+          if (count < target) {
+            counter.innerText = Math.ceil(count);
+            setTimeout(updateCount, 30);
+          } else {
+            counter.innerText = target;
+          }
+        };
+        updateCount();
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | GreenAcres Organic Farm</title>
+  <style>
+    :root {
+      --primary: #2d5a27;
+      --primary-dark: #1b3818;
+      --secondary: #e9b949;
+      --bg-light: #f4f6f0;
+      --surface: #ffffff;
+      --text-dark: #2c3e50;
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      --radius: 8px;
+      --transition: all 0.3s ease;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: var(--text-dark); background-color: var(--bg-light); line-height: 1.6; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .header { background: var(--surface); box-shadow: var(--shadow); position: sticky; top: 0; z-index: 1000; }
+    .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+    .logo { font-size: 1.5rem; font-weight: 700; color: var(--primary); text-decoration: none; }
+    .nav-menu { display: flex; list-style: none; gap: 1.5rem; align-items: center; }
+    .nav-link { text-decoration: none; color: var(--text-dark); font-weight: 500; transition: var(--transition); }
+    .nav-link:hover, .nav-link.active { color: var(--primary); }
+    .cart-icon-btn { background: var(--primary); color: white; border: none; padding: 0.5rem 1rem; border-radius: var(--radius); cursor: pointer; font-weight: 600; }
+    .hamburger { display: none; cursor: pointer; background: none; border: none; font-size: 1.5rem; }
+    .section { padding: 4rem 0; }
+    .section-title { text-align: center; font-size: 2.2rem; color: var(--primary-dark); margin-bottom: 2.5rem; }
+    .btn { display: inline-block; padding: 0.8rem 1.8rem; border-radius: var(--radius); font-weight: 600; cursor: pointer; border: none; }
+    .btn-primary { background: var(--primary); color: white; }
+    .timeline { border-left: 3px solid var(--primary); padding-left: 1.5rem; margin: 2rem 0; }
+    .timeline-item { margin-bottom: 1.5rem; position: relative; }
+    .timeline-item::before { content: ''; position: absolute; left: -1.95rem; top: 5px; width: 12px; height: 12px; background: var(--secondary); border: 3px solid var(--primary); border-radius: 50%; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 2000; justify-content: center; align-items: center; }
+    .modal.active { display: flex; }
+    .modal-content { background: var(--surface); padding: 2rem; border-radius: var(--radius); width: 90%; max-width: 500px; position: relative; }
+    .close-modal { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; cursor: pointer; border: none; background: none; }
+    .footer { background: var(--primary-dark); color: white; padding: 2rem 0; margin-top: 4rem; text-align: center; }
+    @media (max-width: 768px) {
+      .nav-menu { position: fixed; top: 70px; left: -100%; width: 100%; height: calc(100vh - 70px); background: var(--surface); flex-direction: column; padding: 2rem; transition: var(--transition); }
+      .nav-menu.active { left: 0; }
+      .hamburger { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">🌱 GreenAcres</a>
+      <button class="hamburger">☰</button>
+      <ul class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link active">About Us</a></li>
+        <li><a href="produce.html" class="nav-link">Produce & Shop</a></li>
+        <li><a href="tours.html" class="nav-link">Tours & Workshops</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+        <li><button id="cart-btn" class="cart-icon-btn">🛒 Cart (<span id="cart-count">0</span>)</button></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="section container">
+    <h1 class="section-title">Our Legacy & Mission</h1>
+    <div style="display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; margin-bottom: 3rem;">
+      <div style="flex: 1; min-width: 300px;">
+        <img src="https://images.unsplash.com/photo-1592417817098-8f3d6eb1475a?w=800&q=80" style="width:100%; border-radius: var(--radius);" alt="Farmers">
+      </div>
+      <div style="flex: 1; min-width: 300px;">
+        <h2 style="color: var(--primary); margin-bottom: 1rem;">Rooted in Gauteng Soil</h2>
+        <p style="margin-bottom: 1rem;">Founded near Pretoria in 1998, GreenAcres began with a clear mission: demonstrate that commercial agriculture can operate in perfect balance with nature. Over two decades later, our 150-hectare sanctuary produces over 45 organic crop varieties.</p>
+        <p>We combine traditional permaculture wisdom with modern green tech—such as rainwater harvesting and solar refrigeration—to supply Gauteng with wholesome, farm-fresh goodness.</p>
+      </div>
+    </div>
+
+    <h2 style="color: var(--primary-dark); text-align: center; margin-bottom: 1.5rem;">Our Growing History</h2>
+    <div class="timeline" style="max-width: 700px; margin: 0 auto;">
+      <div class="timeline-item">
+        <h4>1998 — The First Seeds</h4>
+        <p>Acquired 15 hectares in Kameeldrift, Pretoria, initiating organic soil restoration practices.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>2008 — Certified Organic</h4>
+        <p>Achieved full national organic accreditation and launched our local box delivery program.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>2018 — 100% Renewable Transition</h4>
+        <p>Installed off-grid solar arrays and a central reservoir drip system for sustainable water management.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>2026 — Community Agricultural Hub</h4>
+        <p>Welcoming over 5,000 visitors yearly for eco-tours, workshops, and farm-to-table culinary experiences.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="cart-modal" class="modal">
+    <div class="modal-content">
+      <button id="close-cart" class="close-modal">&times;</button>
+      <h2>Your Shopping Basket</h2>
+      <ul id="cart-items-list" style="margin: 1.5rem 0; list-style: none;"></ul>
+      <p style="font-weight: bold; font-size: 1.2rem;">Total: R<span id="cart-total">0.00</span></p>
+      <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Checkout</button>
+    </div>
+  </div>
+
+  <footer class="footer">&copy; 2026 GreenAcres Organic Farm Pretoria. All Rights Reserved.</footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('img').forEach(img => {
+        img.onerror = function() {
+          this.onerror = null;
+          this.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'><rect width='100%' height='100%' fill='%232d5a27'/><text x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='22' fill='%23ffffff'>🌿 GreenAcres Pretoria Farm</text></svg>";
+        };
+      });
+
+      const hamburger = document.querySelector('.hamburger');
+      const navMenu = document.querySelector('.nav-menu');
+      if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => navMenu.classList.toggle('active'));
+      }
+
+      let cart = JSON.parse(localStorage.getItem('farm_cart')) || [];
+      const updateCartBadge = () => {
+        const cartCountEl = document.getElementById('cart-count');
+        if (cartCountEl) cartCountEl.textContent = cart.reduce((sum, item) => sum + item.qty, 0);
+      };
+      updateCartBadge();
+
+      const cartBtn = document.getElementById('cart-btn');
+      const cartModal = document.getElementById('cart-modal');
+      const closeCartBtn = document.getElementById('close-cart');
+      if (cartBtn && cartModal) {
+        cartBtn.addEventListener('click', () => {
+          renderCartItems();
+          cartModal.classList.add('active');
+        });
+      }
+      if (closeCartBtn) closeCartBtn.addEventListener('click', () => cartModal.classList.remove('active'));
+
+      function renderCartItems() {
+        const cartItemsList = document.getElementById('cart-items-list');
+        const cartTotalEl = document.getElementById('cart-total');
+        if (!cartItemsList || !cartTotalEl) return;
+        cartItemsList.innerHTML = '';
+        let total = 0;
+        if (cart.length === 0) {
+          cartItemsList.innerHTML = '<li>Your basket is empty.</li>';
+        } else {
+          cart.forEach(item => {
+            const itemTotal = item.price * item.qty;
+            total += itemTotal;
+            const li = document.createElement('li');
+            li.style.marginBottom = '8px';
+            li.textContent = `${item.name} x${item.qty} - R${itemTotal.toFixed(2)}`;
+            cartItemsList.appendChild(li);
+          });
+        }
+        cartTotalEl.textContent = total.toFixed(2);
+      }
+    });
+  </script>
+</body>
+</html>
